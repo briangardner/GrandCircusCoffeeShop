@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GrandCircusCoffeeShop.DAL;
 using GrandCircusCoffeeShop.Models;
 using GrandCircusCoffeeShop.Models.Home;
 
@@ -38,6 +39,18 @@ namespace GrandCircusCoffeeShop.Controllers
         [HttpPost]
         public ActionResult Register(Registration registration)
         {
+            var database = new CoffeeShopDBEntities();
+            database.UserRegistrations.Add(new UserRegistration()
+            {
+                Email = registration.Email,
+                FirstName = registration.FirstName,
+                LastName = registration.LastName,
+                FavoriteCoffee = registration.FavoriteCoffee,
+                Password = registration.Password,
+                PhoneNumber = registration.PhoneNumber
+            });
+            database.SaveChanges();
+
             var vm = new WelcomeViewModel()
             {
                 FirstName = registration.FirstName,
