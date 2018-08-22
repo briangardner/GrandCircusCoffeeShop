@@ -24,6 +24,13 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
+                <ul class="nav navbar-right">
+                    @if (Request.Cookies.Get("ShoppingCart") != null)
+                    {
+                        var shoppingCartCookie = Response.Cookies["ShoppingCart"];
+                        <li><span class="badge white">@shoppingCartCookie.Value </span><i class="glyphicon glyphicon-shopping-cart white"></i></li>
+                    }
+                </ul>
             </div>
         </div>
     </div>

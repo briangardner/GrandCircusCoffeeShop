@@ -1,0 +1,48 @@
+﻿@model GrandCircusCoffeeShop.Models.Home.WelcomeViewModel
+@{
+    ViewBag.Title = "Welcome";
+}
+
+<h2>Welcome</h2>
+
+<div>
+    <h4>WelcomeViewModel</h4>
+    <hr />
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Welcome <span class="text-success">@Model.FirstName</span></p>
+        </div>
+    </div>
+    @using (Html.BeginForm("Welcome", "Home"))
+    {
+        <div class="row">
+            <div class="col-md-4">Order @Model.FavoriteCoffee</div>
+            <div class="col-md-1">
+                <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-bitcoin"></i>Order</button>
+            </div>
+        </div>
+        <div class="hidden">
+            @Html.HiddenFor(model => model.FavoriteCoffee)
+            @Html.HiddenFor(model => model.FirstName)
+        </div>
+    }
+
+    @using (Html.BeginForm("EmptyCart", "Home"))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-danger">Empty cart</button>
+            </div>
+        </div>
+        <div class="hidden">
+            @Html.HiddenFor(model => model.FavoriteCoffee)
+            @Html.HiddenFor(model => model.FirstName)
+        </div>
+
+    }
+
+
+</div>
+<p>
+    @Html.ActionLink("Back to Home", "Index")
+</p>
